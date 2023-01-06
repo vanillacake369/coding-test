@@ -1,8 +1,10 @@
+package Done;
+
 import java.util.Arrays;
 
 // Arrays.sort()(:: int[]), Collections.sort()(:: List<Integer>
 // Collections.sort()는 내부적으로 Arrays.sort()를 사용함!
-public class makeMinimum {
+public class MakeMinimum {
     public static void main(String[] args) {
         int min = solution(new int[]{1, 4, 2}, new int[]{5, 4, 4});
     }
