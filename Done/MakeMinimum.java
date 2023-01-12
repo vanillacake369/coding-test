@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class MakeMinimum {
     public static void main(String[] args) {
         int min = solution(new int[]{1, 4, 2}, new int[]{5, 4, 4});
+        System.out.println("Min : "+ min);
     }
 
     public static int solution(int[] A, int[] B) {
