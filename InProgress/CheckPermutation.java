@@ -14,20 +14,11 @@ public class CheckPermutation {
         System.out.println("test case1 : " + solution(testArr1));
         System.out.println("test case2 : " + solution(testArr2));
     }
+
     public static boolean solution(int[] arr) {
-        boolean answer = true;
-        // ArrayList로 변환
-        List<Integer> arrayList = IntStream.of(arr).boxed().collect(Collectors.toList());
-        System.out.println(arrayList.toString());
-        // 정렬
-        Collections.sort(arrayList);
-        // 정렬된 리스트가 순열을 이루는지 검사
-        for (int i = 0; i < arrayList.size(); i++) {
-            if(i != (arrayList.size()-1)){
-                if( (arrayList.get(i+1)-arrayList.get(i)) > 1)
-                    answer = false;
-            }
-        }
-        return answer;
+        int[] answer = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) answer[i] = i + 1;
+        Arrays.sort(arr);
+        return Arrays.equals(answer, arr);
     }
 }
