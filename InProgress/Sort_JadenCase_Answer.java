@@ -17,4 +17,5 @@ public class Sort_JadenCase_Answer {
             last = c;
         }
         return sb.toString();
+    }
 }
