@@ -37,6 +37,7 @@ public class GetIceCream {
         m = sc.nextInt();
         sc.nextLine(); // 버퍼 비우기
 
+
         // 2차원 리스트의 맵 정보 입력 받기
         for (int i = 0; i < n; i++) {
             String str = sc.nextLine(); // 0110
