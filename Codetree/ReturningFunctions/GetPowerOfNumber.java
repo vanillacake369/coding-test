@@ -1,4 +1,4 @@
-package Codetree;
+package Codetree.ReturningFunctions;
 
 import java.util.Scanner;
 
