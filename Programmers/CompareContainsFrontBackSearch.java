@@ -1,6 +1,4 @@
-package Done;
-
-import java.util.Random;
+package Programmers;
 
 public class CompareContainsFrontBackSearch {
     public static void main(String[] args) {

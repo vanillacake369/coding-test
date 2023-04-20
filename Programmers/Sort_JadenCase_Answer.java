@@ -1,4 +1,4 @@
-package InProgress;
+package Programmers;
 
 public class Sort_JadenCase_Answer {
     public static String solution(String s) {

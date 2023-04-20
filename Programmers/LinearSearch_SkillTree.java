@@ -1,9 +1,6 @@
-package Done;
+package Programmers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
 
 public class LinearSearch_SkillTree {
     public static void main(String[] args) {

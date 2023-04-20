@@ -1,6 +1,4 @@
-package Done;
-
-import java.util.Hashtable;
+package Programmers;
 
 public class GetNumberOfPY {
     public static void main(String[] args) {
