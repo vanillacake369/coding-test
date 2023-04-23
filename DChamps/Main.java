@@ -50,43 +50,58 @@ public class Main {
         String wholeGrade = ""; // 전체등급문자열(결과값)
         int[] checkGetGrade = new int[SortedA.length];
         /* 순서 찾아 등급부여 */
-        for (int i = 0; i < A.length; i++) {
-            String grade = getGrade(SortedA, A[i], checkGetGrade);
-            wholeGrade += grade;
+        try {
+            for (int i = 0; i < A.length; i++) {
+                String grade = getGrade(SortedA, A[i], checkGetGrade);
+                wholeGrade += grade;
+            }
+        } catch (Exception e) {
+            System.err.println("** Error Occured **");
+            System.err.println(e);
         }
         /* result */
         System.out.println(wholeGrade);
-        System.out.println(Arrays.toString(SortedA));
     }
 
-    private static String getGrade(int[] SortedA, int A, int[] checkGetGrade) {
-        // A의 원소를 읽는다.
+    private static String getGrade(int[] SortedA, int A, int[] checkGetGrade) throws Exception {
+        // 인자값으로 넘어온 점수
         int currentScore = A;
         int rankOfCurrentScore = 0;
-        rankOfCurrentScore = getRankOfCurrentScore(SortedA, checkGetGrade, currentScore, rankOfCurrentScore);
-        // 등급조건에 따라 등급을 부여한다.
-        System.out.print("점수 : " + currentScore);
-        return rankGrade(rankOfCurrentScore, SortedA.length);
+        // 점수에 따른 순위를 가져온다.
+        try {
+            rankOfCurrentScore = getRankOfCurrentScore(SortedA, checkGetGrade, currentScore, rankOfCurrentScore);
+            // 순위를 참고하여 등급조건에 따라 등급을 부여한다.
+            System.out.print("점수 : " + currentScore);
+            return rankGrade(rankOfCurrentScore, SortedA.length);
+        } catch (Error e) {
+            throw e;
+        }
     }
 
-    private static int getRankOfCurrentScore(int[] SortedA, int[] checkGetGrade, int currentScore, int rankOfCurrentScore) {
-        // 원소의 순위를 찾는다.
+    private static int getRankOfCurrentScore(int[] SortedA, int[] checkGetGrade, int currentScore, int rankOfCurrentScore)
+            throws Exception {
+        int rank = 0;
+        // 점수를 가진 학생의 순위를 찾는다.
         for (int j = 0; j < SortedA.length; j++) {
-            // 읽은 적이 있다면 다음 원소를 찾는다.
-            if (hasRead(j, checkGetGrade)) {
-                continue;
-            }
+            // 정렬된 점수배열에서 학생의 점수와 동일한 점수가 있다면
             if (SortedA[j] == currentScore) {
-                rankOfCurrentScore = j;
-                checkGetGrade[j] = 1; // 찾으면 읽은 표시를 해둔다.
+                // 같은 점수를 가진 학생들을 위해  정렬점수배열에서 이전에 참조했는지 검사
+                if (hasNeverRead(SortedA, checkGetGrade, j)) {
+                    checkGetGrade[j] = 1; // 찾으면 읽은 표시를 해둔다.
+                    return j;
+                }
             }
         }
-        return rankOfCurrentScore;
+        // 정렬된 점수배열에서 학생의 점수를 찾을 수 없다면, 예외를 던진다 :: 그럴 수 없기 때문에.
+        throw new Exception("정렬된 점수 배열에서 해당 학생의 점수를 찾을 수 없습니다.");
     }
 
-    private static boolean hasRead(int j, int[] checkGetGrade) {
-        return (checkGetGrade[j] == 1);
+    private static boolean hasNeverRead(int[] sortedA, int[] checkGetGrade, int j) {
+        if (checkGetGrade[j] == 0)
+            return true;
+        return false;
     }
+
 
     private static String rankGrade(int rankOfCurrentScore, int studentCount) {
         /*
@@ -100,14 +115,12 @@ public class Main {
         int standardOfA = (int) Math.floor((studentCount - (studentCount * 0.3)));
         int standardOfB = (int) Math.floor((studentCount - (studentCount * 0.7)));
         if ((rankOfCurrentScore > standardOfA) && (rankOfCurrentScore < studentCount)) {
-            System.out.print(",A기준 : " + standardOfA);
             System.out.print(",순위 : " + rankOfCurrentScore);
             System.out.println(",등급 : " + "A");
             return "A";
         }
         /*B*/
         if ((rankOfCurrentScore > standardOfB) && (rankOfCurrentScore <= standardOfA)) {
-            System.out.print(",B기준 : " + standardOfB);
             System.out.print(",순위 : " + rankOfCurrentScore);
             System.out.println(",등급 : " + "B");
             return "B";
