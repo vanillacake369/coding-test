@@ -1,4 +1,4 @@
-package Codetree.DChamps;
+package DChamps;
 
 import java.util.*;
 
@@ -63,6 +63,13 @@ public class Main {
         // A의 원소를 읽는다.
         int currentScore = A;
         int rankOfCurrentScore = 0;
+        rankOfCurrentScore = getRankOfCurrentScore(SortedA, checkGetGrade, currentScore, rankOfCurrentScore);
+        // 등급조건에 따라 등급을 부여한다.
+        System.out.print("점수 : " + currentScore);
+        return rankGrade(rankOfCurrentScore, SortedA.length);
+    }
+
+    private static int getRankOfCurrentScore(int[] SortedA, int[] checkGetGrade, int currentScore, int rankOfCurrentScore) {
         // 원소의 순위를 찾는다.
         for (int j = 0; j < SortedA.length; j++) {
             // 읽은 적이 있다면 다음 원소를 찾는다.
@@ -74,9 +81,7 @@ public class Main {
                 checkGetGrade[j] = 1; // 찾으면 읽은 표시를 해둔다.
             }
         }
-        // 등급조건에 따라 등급을 부여한다.
-        System.out.print("점수 : " + currentScore);
-        return rankGrade(rankOfCurrentScore, SortedA.length);
+        return rankOfCurrentScore;
     }
 
     private static boolean hasRead(int j, int[] checkGetGrade) {
