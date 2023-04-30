@@ -1,4 +1,4 @@
-package Codetree.Recursive;
+package Codetree.NoneReturnRecursive;
 
 import java.util.Scanner;
 
