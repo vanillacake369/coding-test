@@ -34,9 +34,11 @@ public class SameTwoProgression {
     public static void main(String[] args) {
         /* 입력 */
         Scanner scanner = new Scanner(System.in);
+
         /* 연산 */
         scanner.nextLine(); // 해당 로직 프로세스 상 수열의 크기 입력은 의미가 없으므로 그냥 받기만 하고 저장하지 않음
         String resultOfComparison = compareTwoProgression(scanner); // 두 수열이 같다면 Yes,아니라면 No 반환 함수 호출
+
         /* 출력 */
         System.out.println(resultOfComparison);
     }
@@ -50,17 +52,20 @@ public class SameTwoProgression {
      * 두 수열을 비교 :: 두 수열이 같다면 true, 아니라면 false
      */
     private static String compareTwoProgression(Scanner scanner) {
+
         // 첫 수열 :: 각 숫자를 " " 구분자를 통해 정수형 배열로서 입력받기 
         int[] firstProgression = Arrays.stream(scanner.nextLine().split(" ")).
                 mapToInt(Integer::parseInt).toArray();
+
         // 첫 수열을 해쉬테이블에 저장 :: <값 : 등장수>
         for (int element : firstProgression) {
-            // 기존값이 있다면 +1
             hashtable.put(element, 1);
         }
+
         // 두 번째 수열 :: 각 숫자를 " " 구분자를 통해 정수형 배열로서 입력받기
         int[] secondProgression = Arrays.stream(scanner.nextLine().split(" ")).
                 mapToInt(Integer::parseInt).toArray();
+
         // 두 수열을 비교 :: 두 수열이 같다면 true, 아니라면 false
         if (hasHashTableKey(secondProgression)) {
             return "Yes";
@@ -69,10 +74,10 @@ public class SameTwoProgression {
     }
 
     /**
-     * 의사코드
-     * 1. 세 번째 줄의 입력 중에서 - 두 번째 수열의 값 중에서 -
-     * 1-1. 해쉬테이블의 키 값으로 등록되어 있지 않다면 false를 반환
-     * 1-2. 모든 값이 키 값으로 등록되어 있다면 true를 반환
+     * 입력된 배열의 원소 중에서 해쉬테이블에 키값으로 등록되어있지않다면 false 반환
+     *
+     * @param secondProgression
+     * @return boolean
      */
     private static boolean hasHashTableKey(int[] secondProgression) {
         for (int element : secondProgression) {
@@ -81,6 +86,7 @@ public class SameTwoProgression {
                 return false;
             }
         }
+
         return true;
     }
 }
