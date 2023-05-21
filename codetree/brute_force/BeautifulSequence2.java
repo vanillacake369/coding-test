@@ -73,6 +73,8 @@ public class BeautifulSequence2 {
             storePermutatedStr(elements, delimiter);
         } else {
             for (int i = 0; i < n - 1; i++) {
+                System.out.println("------ INSIDE FOR LOOP ------");
+                System.out.println(" n : " + (n - 1) + " , elements : " + elements + " , delimiter : " + delimiter);
                 generatePermutation(n - 1, elements, delimiter);
                 if (n % 2 == 0) {
                     swap(elements, i, n - 1);
