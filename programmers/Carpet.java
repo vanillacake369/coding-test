@@ -3,9 +3,10 @@ package programmers;
 public class Carpet {
     public static void main(String[] args) {
 //        int[] answer1 = solution(10, 2);
-        int[] answer2 = solution(8, 1);
+//        int[] answer2 = solution(8, 1);
 //        int[] answer3 = solution(24, 24);
-        for (int a : answer2) {
+        int[] answer4 = solution(8, 1);
+        for (int a : answer4) {
             System.out.println(a);
         }
     }
