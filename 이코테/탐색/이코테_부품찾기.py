@@ -33,5 +33,4 @@ for i in target:
     else:
         result.append("no")
 
-
 print(result)
