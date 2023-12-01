@@ -1,9 +1,11 @@
-# 지문 이해도가 굉장히 중요한 문제,,,
-# 팩트만 이해하자,,,괜히 상상력을 넣지 말고,,,ㅠㅠ
+# 이렇게는 왜 안 풀릴까???
+# 아직까지도,,,해당 방식으로는 미구현,,,!
+# 2023-12-01
 def solution(s):
     answer = 0
     isX = 0
     isNotX = 0
+
     for i in range(0,len(s)):
         x = s[i]
         for j in range(i,len(s)):
@@ -12,15 +14,12 @@ def solution(s):
             else:
                 isNotX += 1
             if (isX > 0) and (isX == isNotX):
-                print("same")
                 answer += 1
-                s = s[:i+1]
                 isX = 0
                 isNotX = 0
-                # if(j != len(s)-1):
-                #     i = j
+                i = j
                 break
-    return answer
+    return answer+1
 
 s = "banana"
 print(solution(s))
