@@ -30,7 +30,9 @@ def solution(genres, plays):
     sorted_playPerGenres = {genre: sorted(genre_data, key=lambda x: list(x.values())[0], reverse=True) for genre, genre_data in playPerGenres.items()}
     
     #4
-    
+    for sap in sortedAllPlays :
+        for i in range(0,len(sorted_playPerGenres)):
+            answer.append(list(sorted_playPerGenres[sap][i].keys())[0])
 
     return answer
 
