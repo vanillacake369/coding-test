@@ -1,35 +1,24 @@
 def solution(s):
-    result=[]
-    
-    if len(s)==1:
-        return 1
-    
+    sliceStrs = []
     for i in range(1, len(s)+1):
-        b = ''
-        cnt = 1
-        tmp=s[:i]
-
-        for j in range(i, len(s)+i, i):
-            
-            if tmp==s[j:i+j]:
-                cnt+=1
+        count = 1
+        sliceStr = s[:i]
+        shortenStr = ""
+        for j in range(i,len(s)+i,i):
+            if sliceStr == s[j:j+i]:
+                count += 1
             else:
-                if cnt!=1:
-                    b = b + str(cnt)+tmp
+                if count == 1:
+                    shortenStr = shortenStr + sliceStr
                 else:
-                    b = b + tmp
-                    
-                tmp=s[j:j+i]
-                cnt = 1
-                
-        result.append(len(b))
-    return min(result)
+                    shortenStr = shortenStr + str(count) + sliceStr
+                sliceStr = s[j:j+i]
+                count = 1
+        sliceStrs.append(shortenStr)
+    sliceStrs = sorted(sliceStrs, key = lambda x:len(x))
+    return len(sliceStrs[0])
 
-
-s = "aabbaccc"
-# 2a2ba3c
+# s = "aabb"
+# s = "aabbaccc"
 s = "ababcdcdababcdcd"
-# 2ababcdcd
-s = "abcabcdede"
-# 2abcdede
 print(solution(s))
